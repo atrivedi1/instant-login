@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+            <title>Instant Login</title>
+            
+            <!-- account for no favicon -->
+            <link rel="shortcut icon" href="">
+            
+            <!-- additional styles -->
+            <link rel="stylesheet" type="text/css" href="./styles.css">
+
+            <!-- add jquery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        </head>
+
+        <body>
+            <div id="form-container">
+                <form id="login-form" method="post" action="/me">
+                    <input id="login-input" type="text" placeholder="Enter Login Credentials">
+                    <input id="submit-button" type="submit" value="Instant Login">
+                </form>
+            </div>
+
+            <div id="user-info-container">
+            </div>
+
+            <script src="./login.js"></script>
+        </body>
+    </html>
