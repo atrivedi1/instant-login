@@ -2,13 +2,13 @@
 
 //dependencies
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 
 //create instance of express
 const app = express();
 
 //middleware
-app.use(express.static('./client'));
 app.use(bodyParser.json())
 
 //connect on routes
