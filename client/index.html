@@ -14,16 +14,13 @@
         </head>
 
         <body>
-            <div id="form-container">
-                <form id="login-form" method="post" action="/me">
-                    <input id="login-input" type="text" placeholder="Enter Login Credentials">
-                    <input id="submit-button" type="submit" value="Instant Login">
-                </form>
+
+            <!-- TODO: remove client-id, redirect_uri, and district login from a tag -->
+            <div id="oauth-link-container">
+                <a href="https://clever.com/oauth/authorize?response_type=code&client_id=68ac7b4f0d469ecf6544&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&district_id=588d0fe30eef8d00012d8921" alt="Log in with Clever">
+                    <img src="https://s3.amazonaws.com/assets.clever.com/sign-in-with-clever/sign-in-with-clever-full.png" />
+                </a>
             </div>
 
-            <div id="user-info-container">
-            </div>
-
-            <script src="./login.js"></script>
         </body>
     </html>
