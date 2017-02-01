@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //middleware
+app.use(express.static("./client"))
 app.use(bodyParser.json())
 
 //connect on routes
