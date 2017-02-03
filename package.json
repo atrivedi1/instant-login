@@ -2,10 +2,13 @@
   "name": "instant-login",
   "version": "1.0.0",
   "description": "small app that demonstrates clever's instant login functionality",
-  "main": "server.js",
+  "engines": {
+    "node": "6.1.0"
+  },
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
