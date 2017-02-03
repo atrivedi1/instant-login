@@ -1,7 +1,6 @@
 'use strict'
 
 const requestPromise = require('request-promise');
-const session = require('express-session')
 const path = require('path');
 
 const cleverAPI = require('../api_keys.js');
@@ -16,9 +15,17 @@ const API_OAUTH_TOKEN_URL = 'https://clever.com/oauth/tokens';
 
 
 module.exports = {
+
+    renderLogin: function(req, res) {
+
+        res.render('login', {
+            'redirect_uri': APP_LOGIN_URL + '/oauth',
+            'client_id': CLIENT_ID,
+            'district_id': cleverAPI.DISTRICT_ID
+        });
+    },
+
     verifyUser: function(req, res, cb){
-        console.log("trying to grab auth token", req.query.code); 
-        
         //if client app has not gotten code, redirect user back to home page
         if(!req.query.code){
             res.redirect('/');
@@ -45,13 +52,11 @@ module.exports = {
             //request access token
             requestPromise(requestOptionsForAuth)
                 .then((result) => {
-                    console.log("successfully grabbed data", result);
                     let accessToken = result['access_token'];
                     return accessToken;
                 })
                 .then((accessToken) => {
-                    console.log(" access token -->", accessToken);
-
+    
                     let requestOptionsForUserData = {
                         'url': API_PREFIX + '/me',
                         'json': true,            
@@ -62,8 +67,12 @@ module.exports = {
 
                     return requestPromise(requestOptionsForUserData)
                         .then((result) => {
-                            console.log("result -->", result)
-                            req.session.user = result['data'];                        
+                            let data = result['data'];
+                            let me = result['links'][0].uri;
+
+                            req.session.user = result['data'];
+                            req.session.me = me;
+
                             res.redirect('/app');
                         })
                         .catch((err) => res.status(500).send("issue rerouting user to app: " + err));
@@ -72,4 +81,35 @@ module.exports = {
                 .catch((err) => res.status(500).send("issue getting access token: " + err));
         }    
     },
+
+    renderDashboard: function(req, res) {
+        //if user does not have a session redirect to login page
+        if (!req.session.user) {
+            res.redirect('/');
+        } 
+        
+        //otherwise render dashboard
+        else {
+            let userType = req.session.user.type;
+
+            res.render('dashboard', {
+                'data': req.session.user,
+                'type': userType,
+                'url': req.session.me
+            });
+        }
+    },
+
+    logout: function(req, res) {
+        //if user not logged in, redirect to login page
+        if(!req.session.user){
+            res.redirect('/');  
+        } 
+        
+        //otherwise delete session and log user out
+        else {
+            delete req.session.user;
+            res.redirect('/');
+        }    
+    }
 }

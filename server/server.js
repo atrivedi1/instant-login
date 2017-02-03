@@ -3,14 +3,23 @@
 //dependencies
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 
 //create instance of express
 const app = express();
 
 //middleware
-app.use(express.static("./client"))
-app.use(bodyParser.json())
+app.use(express.static("./views"));
+app.use(bodyParser.json());
+
+app.use(session({ 
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.set('view engine', 'ejs');
 
 //connect on routes
 require('./routes.js')(app)

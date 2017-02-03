@@ -1,0 +1,35 @@
+body {
+	font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+thead {
+	background-color: #4274f6;
+	color: white;
+}
+
+th {
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.tabledata {
+	font-size: 14px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	flex-direction: row-reverse;
+}
+
+#oauth-link-container, table {	
+  margin-top: 80px;
+  text-align: center;
+}
+
+#logout {	
+	font-size: 12px;
+}
