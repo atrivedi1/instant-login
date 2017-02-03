@@ -3,7 +3,7 @@
 const requestPromise = require('request-promise');
 const path = require('path');
 
-const cleverAPI = require('../api_keys.js');
+// const cleverAPI = require('../api_keys.js');
 const CLIENT_ID = process.env.CLIENT_ID || cleverAPI.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET || cleverAPI.CLIENT_SECRET;
 const DISTRICT_ID = process.env.DISTRICT_ID || cleverAPI.DISTRICT_ID;
