@@ -8,8 +8,8 @@ const CLIENT_ID = process.env.CLIENT_ID || cleverAPI.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET || cleverAPI.CLIENT_SECRET;
 const DISTRICT_ID = process.env.DISTRICT_ID || cleverAPI.DISTRICT_ID;
 
-const APP_LOGIN_URL = process.env.APP_URL || 'http://localhost:3000';
-const APP_OAUTH_URL = process.env.OAUTH_URL || 'http://localhost:3000/oauth';
+const APP_LOGIN_URL = process.env.APP_LOGIN_URL || 'http://localhost:3000';
+const APP_OAUTH_URL = process.env.APP_OAUTH_URL || 'http://localhost:3000/oauth';
 
 const API_PREFIX = 'https://api.clever.com';
 const API_OAUTH_TOKEN_URL = 'https://clever.com/oauth/tokens';
